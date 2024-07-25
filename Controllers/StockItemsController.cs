@@ -43,14 +43,19 @@ namespace stocktakingApi.Controllers
                 return Ok(item);
             }
         }
+        [HttpPost]
         [Route("updatestock")]
         public async Task<IActionResult> UpdateStock(StockTaken stockTaken)
         {
+            Staff staff = await _db.Staffs.FindAsync(stockTaken.StaffId);
+            StaffTask staffTask = new StaffTask();
             StockItems = await _db.StockItems.Where(k=>k.Name==stockTaken.itemName).ToListAsync();
             StockItem stockItem =StockItems.FirstOrDefault();
-            stockItem.StaffId= stockTaken.StaffId;
-            stockItem.StockAmount = stockItem.StockAmount;
+            StockItem stockItemInDb = await _db.StockItems.FindAsync(stockItem.StockItemId);
+            stockItemInDb.StockAmount = stockItemInDb.StockAmount+ stockTaken.stockAmount;
             await _db.SaveChangesAsync();
+            staffTask.staff=staff;
+            staffTask.stockItem = stockItemInDb;
             return Ok(stockItem);
 
         }

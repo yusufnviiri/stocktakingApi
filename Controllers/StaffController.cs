@@ -48,7 +48,9 @@ namespace stocktakingApi.Controllers
         [Route("staffcount/{id}")]
         public async Task<IActionResult> CountByStaff(int id)
         {
-           StaffStockTaken = await _db.StockItems.Where(p=>p.StaffId == id).ToListAsync();
+            Staff = await _db.Staffs.FindAsync(id);
+
+        var  StaffStockTaken = await _db.StaffTasks.ToListAsync();
             return Ok(StaffStockTaken);
         }
 
