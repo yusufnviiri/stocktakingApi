@@ -13,17 +13,18 @@ namespace stocktakingApi.Controllers
         private readonly ApplicationDbContext _db;
         public IEnumerable<Staff> Staffs { get; set; }=new List<Staff>();
         public IEnumerable<StockItem> StaffStockTaken { get; set; } = new List<StockItem>();
+        public StockItem StockItem { get; set; } = new StockItem();
         public Staff Staff { get; set; } = new Staff();
         public StaffController(ApplicationDbContext db)
         {
             _db = db; 
         }
         [HttpPost]
-        public async Task<IActionResult> CreateStaff(Staff staff)
+        public async Task<IActionResult> CreateSTockItem(StockItem item)
         {
-            await _db.Staffs.AddAsync(staff);
+            await _db.StockItems.AddAsync(item);
             await _db.SaveChangesAsync();
-            return Ok(staff);
+            return Ok(item);
         }
         [HttpGet]
         public async Task<IActionResult> GetAllStaff()
@@ -42,7 +43,6 @@ namespace stocktakingApi.Controllers
                 Staff = await _db.Staffs.FindAsync(id);
                 return Ok(Staff);
             }
-
         }
         [HttpGet]
         [Route("staffcount/{id}")]
