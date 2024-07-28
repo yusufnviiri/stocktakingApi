@@ -20,9 +20,9 @@ namespace stocktakingApi.Controllers
             _db = db; 
         }
         [HttpPost]
-        public async Task<IActionResult> CreateSTockItem(StockItem item)
+        public async Task<IActionResult> CreateStaff(Staff item)
         {
-            await _db.StockItems.AddAsync(item);
+            await _db.Staffs.AddAsync(item);
             await _db.SaveChangesAsync();
             return Ok(item);
         }
@@ -31,7 +31,6 @@ namespace stocktakingApi.Controllers
         {
             Staffs = await _db.Staffs.ToListAsync();
             return Ok(Staffs);
-
         }
         [HttpGet]
         [Route("{id}")]

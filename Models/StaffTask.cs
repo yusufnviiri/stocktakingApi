@@ -2,9 +2,11 @@
 {
     public class StaffTask
     {
-        public int StaffTasksId { get; set; }
+        public int StaffTaskId { get; set; }
         public Staff staff { get; set; }
+        public int StaffId { get; set; }
         public  StockItem stockItem { get; set; }
+        public int StockItemId { get; set; }
 
     }
 }

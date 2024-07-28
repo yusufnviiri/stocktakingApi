@@ -20,11 +20,11 @@ namespace stocktakingApi.Controllers
             _db = db;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateStaff(Staff staff)
+        public async Task<IActionResult> CreateStockItem(StockItem item)
         {
-            await _db.Staffs.AddAsync(staff);
+            await _db.StockItems.AddAsync(item);
             await _db.SaveChangesAsync();
-            return Ok(staff);
+            return Ok(item);
         }
         [HttpGet]
         public async Task<IActionResult> GetAllStockItems()
@@ -56,6 +56,8 @@ namespace stocktakingApi.Controllers
             await _db.SaveChangesAsync();
             staffTask.staff=staff;
             staffTask.stockItem = stockItemInDb;
+            await _db.StaffTasks.AddAsync(staffTask);
+            await _db.SaveChangesAsync();
             return Ok(stockItem);
 
         }
