@@ -11,8 +11,8 @@ using stocktakingApi.Models.Context;
 namespace stocktakingApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240725213440_ff")]
-    partial class ff
+    [Migration("20240728215839_seed")]
+    partial class seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

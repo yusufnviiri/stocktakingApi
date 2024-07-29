@@ -7,7 +7,7 @@
 namespace stocktakingApi.Migrations
 {
     /// <inheritdoc />
-    public partial class ff : Migration
+    public partial class seed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

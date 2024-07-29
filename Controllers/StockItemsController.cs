@@ -26,6 +26,14 @@ namespace stocktakingApi.Controllers
             await _db.SaveChangesAsync();
             return Ok(item);
         }
+        [HttpPost("setCount")]
+        public async Task<IActionResult> SetCount(StockItem item)
+        {
+          var itemInDb =  await _db.StockItems.FindAsync(item.StockItemId);
+            itemInDb.StockAmount = item.StockAmount;
+            await _db.SaveChangesAsync();
+            return Ok(item);
+        }
         [HttpGet]
         public async Task<IActionResult> GetAllStockItems()
         {
